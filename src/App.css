@@ -1,0 +1,154 @@
+.nav {
+  display: flex;
+  gap: 8px;
+  padding: 16px;
+  border-bottom: 1px solid var(--border);
+
+  a {
+    padding: 6px 12px;
+    border-radius: 6px;
+    color: var(--text-h);
+    text-decoration: none;
+
+    &:hover {
+      background: var(--social-bg);
+    }
+    &.active {
+      color: var(--accent);
+      background: var(--accent-bg);
+    }
+  }
+}
+
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: min(760px, 100%);
+  margin: 0 auto;
+  padding: 0 16px 32px;
+  box-sizing: border-box;
+  text-align: left;
+
+  h1 {
+    font-size: 36px;
+    margin: 24px 0 0;
+  }
+}
+
+.search {
+  width: min(360px, 100%);
+  padding: 10px 12px;
+  font: inherit;
+  color: inherit;
+  background: transparent;
+  border: 2px solid var(--border);
+  border-radius: 8px;
+  box-sizing: border-box;
+
+  &:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 1px;
+  }
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 8px;
+
+  th {
+    padding: 0 12px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text);
+  }
+
+  td {
+    padding: 10px 12px;
+    color: var(--text-h);
+    border-block: 1px solid var(--border);
+
+    &:first-child {
+      border-left: 1px solid var(--border);
+      border-radius: 8px 0 0 8px;
+    }
+    &:last-child {
+      border-right: 1px solid var(--border);
+      border-radius: 0 8px 8px 0;
+    }
+  }
+
+  .col-productId {
+    width: 90px;
+    font-family: var(--mono);
+  }
+  .col-price {
+    width: 100px;
+    text-align: right;
+  }
+  .col-cart {
+    width: 56px;
+    text-align: center;
+  }
+  .empty {
+    text-align: center;
+    color: var(--text);
+  }
+}
+
+.toggle,
+.pagination button {
+  min-width: 36px;
+  height: 36px;
+  font: inherit;
+  color: var(--text-h);
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  cursor: pointer;
+
+  &:hover:not(:disabled) {
+    border-color: var(--accent-border);
+  }
+  &:disabled {
+    opacity: 0.4;
+    cursor: default;
+  }
+}
+
+.toggle.in-cart {
+  color: var(--accent);
+  background: var(--accent-bg);
+  border-color: var(--accent-border);
+}
+
+.pagination {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  font-size: 16px;
+
+  label {
+    margin-left: auto;
+  }
+  select {
+    font: inherit;
+    padding: 4px;
+    color: inherit;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+  }
+}
+
+.total {
+  align-self: flex-end;
+  font-size: 20px;
+  color: var(--text);
+
+  strong {
+    color: var(--text-h);
+  }
+}

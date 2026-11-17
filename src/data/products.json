@@ -1,0 +1,542 @@
+[
+  {
+    "productId": 1,
+    "productName": "Espresso",
+    "price": 3.5
+  },
+  {
+    "productId": 2,
+    "productName": "Cappuccino",
+    "price": 4.25
+  },
+  {
+    "productId": 3,
+    "productName": "Latte",
+    "price": 4.5
+  },
+  {
+    "productId": 4,
+    "productName": "Iced Americano",
+    "price": 3.75
+  },
+  {
+    "productId": 5,
+    "productName": "Green Tea",
+    "price": 2.99
+  },
+  {
+    "productId": 6,
+    "productName": "Masala Chai",
+    "price": 3.1
+  },
+  {
+    "productId": 7,
+    "productName": "Orange Juice",
+    "price": 4
+  },
+  {
+    "productId": 8,
+    "productName": "Mango Smoothie",
+    "price": 5.49
+  },
+  {
+    "productId": 9,
+    "productName": "Flat White",
+    "price": 4.35
+  },
+  {
+    "productId": 10,
+    "productName": "Cortado",
+    "price": 3.95
+  },
+  {
+    "productId": 11,
+    "productName": "Macchiato",
+    "price": 3.65
+  },
+  {
+    "productId": 12,
+    "productName": "Mocha",
+    "price": 4.75
+  },
+  {
+    "productId": 13,
+    "productName": "Caramel Latte",
+    "price": 4.95
+  },
+  {
+    "productId": 14,
+    "productName": "Vanilla Latte",
+    "price": 4.85
+  },
+  {
+    "productId": 15,
+    "productName": "Hazelnut Latte",
+    "price": 4.95
+  },
+  {
+    "productId": 16,
+    "productName": "Pumpkin Spice Latte",
+    "price": 5.25
+  },
+  {
+    "productId": 17,
+    "productName": "Oat Milk Latte",
+    "price": 5.1
+  },
+  {
+    "productId": 18,
+    "productName": "Cold Brew",
+    "price": 4.25
+  },
+  {
+    "productId": 19,
+    "productName": "Nitro Cold Brew",
+    "price": 4.95
+  },
+  {
+    "productId": 20,
+    "productName": "Affogato",
+    "price": 5.5
+  },
+  {
+    "productId": 21,
+    "productName": "Irish Coffee",
+    "price": 6.5
+  },
+  {
+    "productId": 22,
+    "productName": "Turkish Coffee",
+    "price": 3.8
+  },
+  {
+    "productId": 23,
+    "productName": "Vietnamese Iced Coffee",
+    "price": 4.6
+  },
+  {
+    "productId": 24,
+    "productName": "Double Espresso",
+    "price": 4.1
+  },
+  {
+    "productId": 25,
+    "productName": "Ristretto",
+    "price": 3.4
+  },
+  {
+    "productId": 26,
+    "productName": "Long Black",
+    "price": 3.6
+  },
+  {
+    "productId": 27,
+    "productName": "Iced Latte",
+    "price": 4.65
+  },
+  {
+    "productId": 28,
+    "productName": "Iced Mocha",
+    "price": 4.95
+  },
+  {
+    "productId": 29,
+    "productName": "Matcha Latte",
+    "price": 5.2
+  },
+  {
+    "productId": 30,
+    "productName": "Chai Latte",
+    "price": 4.55
+  },
+  {
+    "productId": 31,
+    "productName": "Earl Grey",
+    "price": 2.95
+  },
+  {
+    "productId": 32,
+    "productName": "English Breakfast Tea",
+    "price": 2.85
+  },
+  {
+    "productId": 33,
+    "productName": "Jasmine Tea",
+    "price": 3.05
+  },
+  {
+    "productId": 34,
+    "productName": "Chamomile Tea",
+    "price": 2.9
+  },
+  {
+    "productId": 35,
+    "productName": "Peppermint Tea",
+    "price": 2.9
+  },
+  {
+    "productId": 36,
+    "productName": "Oolong Tea",
+    "price": 3.25
+  },
+  {
+    "productId": 37,
+    "productName": "Rooibos Tea",
+    "price": 3
+  },
+  {
+    "productId": 38,
+    "productName": "Hibiscus Iced Tea",
+    "price": 3.45
+  },
+  {
+    "productId": 39,
+    "productName": "Peach Iced Tea",
+    "price": 3.5
+  },
+  {
+    "productId": 40,
+    "productName": "Lemon Iced Tea",
+    "price": 3.35
+  },
+  {
+    "productId": 41,
+    "productName": "Bubble Milk Tea",
+    "price": 5.75
+  },
+  {
+    "productId": 42,
+    "productName": "Taro Milk Tea",
+    "price": 5.95
+  },
+  {
+    "productId": 43,
+    "productName": "Hot Chocolate",
+    "price": 3.95
+  },
+  {
+    "productId": 44,
+    "productName": "White Hot Chocolate",
+    "price": 4.15
+  },
+  {
+    "productId": 45,
+    "productName": "Apple Juice",
+    "price": 3.75
+  },
+  {
+    "productId": 46,
+    "productName": "Carrot Ginger Juice",
+    "price": 5.25
+  },
+  {
+    "productId": 47,
+    "productName": "Watermelon Juice",
+    "price": 4.25
+  },
+  {
+    "productId": 48,
+    "productName": "Pineapple Juice",
+    "price": 4.1
+  },
+  {
+    "productId": 49,
+    "productName": "Fresh Lemonade",
+    "price": 3.25
+  },
+  {
+    "productId": 50,
+    "productName": "Strawberry Lemonade",
+    "price": 3.85
+  },
+  {
+    "productId": 51,
+    "productName": "Mint Lemonade",
+    "price": 3.75
+  },
+  {
+    "productId": 52,
+    "productName": "Berry Smoothie",
+    "price": 5.49
+  },
+  {
+    "productId": 53,
+    "productName": "Banana Smoothie",
+    "price": 4.99
+  },
+  {
+    "productId": 54,
+    "productName": "Green Detox Smoothie",
+    "price": 5.99
+  },
+  {
+    "productId": 55,
+    "productName": "Peanut Butter Smoothie",
+    "price": 5.75
+  },
+  {
+    "productId": 56,
+    "productName": "Strawberry Milkshake",
+    "price": 5.25
+  },
+  {
+    "productId": 57,
+    "productName": "Chocolate Milkshake",
+    "price": 5.25
+  },
+  {
+    "productId": 58,
+    "productName": "Vanilla Milkshake",
+    "price": 4.95
+  },
+  {
+    "productId": 59,
+    "productName": "Sparkling Water",
+    "price": 2.25
+  },
+  {
+    "productId": 60,
+    "productName": "Still Mineral Water",
+    "price": 1.95
+  },
+  {
+    "productId": 61,
+    "productName": "Kombucha",
+    "price": 4.5
+  },
+  {
+    "productId": 62,
+    "productName": "Ginger Beer",
+    "price": 3.25
+  },
+  {
+    "productId": 63,
+    "productName": "Coconut Water",
+    "price": 3.65
+  },
+  {
+    "productId": 64,
+    "productName": "Butter Croissant",
+    "price": 3.25
+  },
+  {
+    "productId": 65,
+    "productName": "Almond Croissant",
+    "price": 4.15
+  },
+  {
+    "productId": 66,
+    "productName": "Chocolate Croissant",
+    "price": 3.85
+  },
+  {
+    "productId": 67,
+    "productName": "Cinnamon Roll",
+    "price": 3.95
+  },
+  {
+    "productId": 68,
+    "productName": "Blueberry Muffin",
+    "price": 3.45
+  },
+  {
+    "productId": 69,
+    "productName": "Banana Bread",
+    "price": 3.25
+  },
+  {
+    "productId": 70,
+    "productName": "Lemon Poppyseed Muffin",
+    "price": 3.45
+  },
+  {
+    "productId": 71,
+    "productName": "Chocolate Chip Cookie",
+    "price": 2.5
+  },
+  {
+    "productId": 72,
+    "productName": "Oatmeal Raisin Cookie",
+    "price": 2.5
+  },
+  {
+    "productId": 73,
+    "productName": "Fudge Brownie",
+    "price": 3.25
+  },
+  {
+    "productId": 74,
+    "productName": "Carrot Cake Slice",
+    "price": 4.75
+  },
+  {
+    "productId": 75,
+    "productName": "Cheesecake Slice",
+    "price": 5.25
+  },
+  {
+    "productId": 76,
+    "productName": "Red Velvet Cupcake",
+    "price": 3.75
+  },
+  {
+    "productId": 77,
+    "productName": "Apple Pie Slice",
+    "price": 4.5
+  },
+  {
+    "productId": 78,
+    "productName": "Tiramisu",
+    "price": 5.95
+  },
+  {
+    "productId": 79,
+    "productName": "Glazed Doughnut",
+    "price": 2.25
+  },
+  {
+    "productId": 80,
+    "productName": "Plain Bagel",
+    "price": 2.5
+  },
+  {
+    "productId": 81,
+    "productName": "Bagel with Cream Cheese",
+    "price": 3.75
+  },
+  {
+    "productId": 82,
+    "productName": "Everything Bagel",
+    "price": 2.75
+  },
+  {
+    "productId": 83,
+    "productName": "Scone with Jam",
+    "price": 3.5
+  },
+  {
+    "productId": 84,
+    "productName": "Avocado Toast",
+    "price": 8.5
+  },
+  {
+    "productId": 85,
+    "productName": "Egg and Cheese Sandwich",
+    "price": 6.25
+  },
+  {
+    "productId": 86,
+    "productName": "Bacon Egg Sandwich",
+    "price": 7.25
+  },
+  {
+    "productId": 87,
+    "productName": "Ham and Cheese Croissant",
+    "price": 6.75
+  },
+  {
+    "productId": 88,
+    "productName": "Turkey Club Sandwich",
+    "price": 9.5
+  },
+  {
+    "productId": 89,
+    "productName": "Caprese Panini",
+    "price": 8.75
+  },
+  {
+    "productId": 90,
+    "productName": "Chicken Pesto Panini",
+    "price": 9.25
+  },
+  {
+    "productId": 91,
+    "productName": "Veggie Wrap",
+    "price": 7.95
+  },
+  {
+    "productId": 92,
+    "productName": "Chicken Caesar Wrap",
+    "price": 8.95
+  },
+  {
+    "productId": 93,
+    "productName": "Tuna Melt",
+    "price": 8.25
+  },
+  {
+    "productId": 94,
+    "productName": "Grilled Cheese",
+    "price": 6.5
+  },
+  {
+    "productId": 95,
+    "productName": "Quiche Lorraine",
+    "price": 7.5
+  },
+  {
+    "productId": 96,
+    "productName": "Spinach Feta Quiche",
+    "price": 7.25
+  },
+  {
+    "productId": 97,
+    "productName": "Greek Yogurt Parfait",
+    "price": 5.25
+  },
+  {
+    "productId": 98,
+    "productName": "Overnight Oats",
+    "price": 4.95
+  },
+  {
+    "productId": 99,
+    "productName": "Granola Bowl",
+    "price": 6.25
+  },
+  {
+    "productId": 100,
+    "productName": "Acai Bowl",
+    "price": 8.95
+  },
+  {
+    "productId": 101,
+    "productName": "Fruit Cup",
+    "price": 4.25
+  },
+  {
+    "productId": 102,
+    "productName": "Tomato Basil Soup",
+    "price": 5.75
+  },
+  {
+    "productId": 103,
+    "productName": "Chicken Noodle Soup",
+    "price": 6.25
+  },
+  {
+    "productId": 104,
+    "productName": "Caesar Salad",
+    "price": 8.25
+  },
+  {
+    "productId": 105,
+    "productName": "Quinoa Salad",
+    "price": 8.75
+  },
+  {
+    "productId": 106,
+    "productName": "Garden Salad",
+    "price": 7.25
+  },
+  {
+    "productId": 107,
+    "productName": "Hummus Plate",
+    "price": 6.95
+  },
+  {
+    "productId": 108,
+    "productName": "Pretzel Bites",
+    "price": 4.5
+  }
+]

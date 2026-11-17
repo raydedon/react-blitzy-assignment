@@ -1,0 +1,30 @@
+.filterable-table {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: min(720px, 100%);
+  margin: 24px auto;
+  padding: 0 16px;
+  box-sizing: border-box;
+  text-align: left;
+}
+
+.filterable-table input {
+  padding: 10px 12px;
+  font: inherit;
+  border: 1px solid #8884;
+  border-radius: 6px;
+  background: transparent;
+  color: inherit;
+}
+
+.filterable-table table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.filterable-table th,
+.filterable-table td {
+  padding: 8px 12px;
+  border-bottom: 1px solid #8884;
+}

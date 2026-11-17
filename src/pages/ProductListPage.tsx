@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { memo, useDeferredValue, useEffect, useRef, useState } from "react";
+import { useVirtualizer } from "@tanstack/react-virtual";
 import {
   columnFilteringFeature,
   createColumnHelper,
@@ -13,6 +14,8 @@ import {
 import { useCart, type Product } from "../cart/cartContext";
 import { formatPrice } from "../utils/formatPrice";
 
+const ROW_HEIGHT = 52; // 44px row + 8px border-spacing
+const SEARCH_DEBOUNCE_MS = 180;
 const PAGE_SIZES = [100, 200, 500, 1000, 5000, 10000, 50000, 100000];
 
 const features = tableFeatures({
@@ -61,25 +64,13 @@ function CartToggle({ productId }: { productId: number }) {
 }
 
 function ProductListPage() {
-  const { state } = useCart();
   const [search, setSearch] = useState("");
+  const [debouncedSearch, setDebouncedSearch] = useState("");
 
-  const table = useTable({
-    features,
-    columns,
-    data: state.listOfProducts,
-    state: { globalFilter: search },
-    onGlobalFilterChange: (updater) =>
-      setSearch((prev) =>
-        String(typeof updater === "function" ? updater(prev) : updater),
-      ),
-    globalFilterFn: "includesString",
-    getColumnCanGlobalFilter: (column) => column.id !== "cart",
-    initialState: { pagination: { pageIndex: 0, pageSize: PAGE_SIZES[0] } },
-  });
-
-  const { pageIndex, pageSize } = table.state.pagination;
-  const rows = table.getRowModel().rows;
+  useEffect(() => {
+    const id = setTimeout(() => setDebouncedSearch(search), SEARCH_DEBOUNCE_MS);
+    return () => clearTimeout(id);
+  }, [search]);
 
   return (
     <section className="page">
@@ -90,42 +81,99 @@ function ProductListPage() {
         placeholder="Search ..."
         aria-label="Search products"
         value={search}
-        onChange={(e) => table.setGlobalFilter(e.target.value)}
+        onChange={(e) => setSearch(e.target.value)}
       />
-      <table className="data-table">
-        <thead>
-          {table.getHeaderGroups().map((group) => (
-            <tr key={group.id}>
-              {group.headers.map((header) => (
-                <th key={header.id} className={`col-${header.column.id}`}>
-                  {header.isPlaceholder ? null : (
-                    <table.FlexRender header={header} />
-                  )}
-                </th>
-              ))}
-            </tr>
-          ))}
-        </thead>
-        <tbody>
-          {rows.length > 0 ? (
-            rows.map((row) => (
-              <tr key={row.id}>
-                {row.getAllCells().map((cell) => (
-                  <td key={cell.id} className={`col-${cell.column.id}`}>
-                    <table.FlexRender cell={cell} />
-                  </td>
+      <ProductTable search={debouncedSearch} />
+    </section>
+  );
+}
+
+// Memoized so keystrokes (which only re-render the parent's input) don't
+// re-run the 50k-row filter/pagination; it re-renders only when the deferred
+// search text changes.
+const ProductTable = memo(function ProductTable({
+  search,
+}: {
+  search: string;
+}) {
+  const { state } = useCart();
+
+  const table = useTable({
+    features,
+    columns,
+    data: state.listOfProducts,
+    state: { globalFilter: search },
+    globalFilterFn: "includesString",
+    getColumnCanGlobalFilter: (column) => column.id !== "cart",
+    initialState: { pagination: { pageIndex: 0, pageSize: PAGE_SIZES[0] } },
+  });
+
+  const { pageIndex, pageSize } = table.state.pagination;
+  const rows = table.getRowModel().rows;
+
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const virtualizer = useVirtualizer({
+    count: rows.length,
+    getScrollElement: () => scrollRef.current,
+    estimateSize: () => ROW_HEIGHT,
+    overscan: 10,
+  });
+  const virtualRows = virtualizer.getVirtualItems();
+  const paddingTop = virtualRows.length > 0 ? virtualRows[0].start : 0;
+  const paddingBottom =
+    virtualRows.length > 0
+      ? virtualizer.getTotalSize() - virtualRows[virtualRows.length - 1].end
+      : 0;
+
+  return (
+    <>
+      <div className="table-scroll" ref={scrollRef}>
+        <table className="data-table">
+          <thead>
+            {table.getHeaderGroups().map((group) => (
+              <tr key={group.id}>
+                {group.headers.map((header) => (
+                  <th key={header.id} className={`col-${header.column.id}`}>
+                    {header.isPlaceholder ? null : (
+                      <table.FlexRender header={header} />
+                    )}
+                  </th>
                 ))}
               </tr>
-            ))
-          ) : (
-            <tr>
-              <td colSpan={columns.length} className="empty">
-                No products match “{search}”
-              </td>
-            </tr>
-          )}
-        </tbody>
-      </table>
+            ))}
+          </thead>
+          <tbody>
+            {rows.length > 0 ? (
+              <>
+                {paddingTop > 0 && (
+                  <tr aria-hidden="true" style={{ height: paddingTop }} />
+                )}
+                {virtualRows.map((virtualRow) => {
+                  const row = rows[virtualRow.index];
+                  return (
+                    <tr key={row.id}>
+                      {row.getAllCells().map((cell) => (
+                        <td key={cell.id} className={`col-${cell.column.id}`}>
+                          <table.FlexRender cell={cell} />
+                        </td>
+                      ))}
+                    </tr>
+                  );
+                })}
+                {paddingBottom > 0 && (
+                  <tr aria-hidden="true" style={{ height: paddingBottom }} />
+                )}
+              </>
+            ) : (
+              <tr>
+                <td colSpan={columns.length} className="empty">
+                  No products match “{search}”
+                </td>
+              </tr>
+            )}
+          </tbody>
+        </table>
+      </div>
       <div className="pagination">
         <button
           type="button"
@@ -177,8 +225,8 @@ function ProductListPage() {
           </select>
         </label>
       </div>
-    </section>
+    </>
   );
-}
+});
 
 export default ProductListPage;

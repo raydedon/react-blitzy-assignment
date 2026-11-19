@@ -1,5 +1,4 @@
-import { memo, useDeferredValue, useEffect, useRef, useState } from "react";
-import { useVirtualizer } from "@tanstack/react-virtual";
+import { memo, Suspense, useDeferredValue, useEffect, useState } from "react";
 import {
   columnFilteringFeature,
   createColumnHelper,
@@ -14,7 +13,6 @@ import {
 import { useCart, type Product } from "../cart/cartContext";
 import { formatPrice } from "../utils/formatPrice";
 
-const ROW_HEIGHT = 52; // 44px row + 8px border-spacing
 const SEARCH_DEBOUNCE_MS = 180;
 const PAGE_SIZES = [100, 200, 500, 1000, 5000, 10000, 50000, 100000];
 
@@ -66,7 +64,7 @@ function CartToggle({ productId }: { productId: number }) {
 function ProductListPage() {
   const [search, setSearch] = useState("");
   const [debouncedSearch, setDebouncedSearch] = useState("");
-
+  const deferredSearch = useDeferredValue(debouncedSearch);
   useEffect(() => {
     const id = setTimeout(() => setDebouncedSearch(search), SEARCH_DEBOUNCE_MS);
     return () => clearTimeout(id);
@@ -83,13 +81,15 @@ function ProductListPage() {
         value={search}
         onChange={(e) => setSearch(e.target.value)}
       />
-      <ProductTable search={debouncedSearch} />
+      <Suspense fallback={<div className="loading">Loading products...</div>}>
+        <ProductTable search={deferredSearch} />
+      </Suspense>
     </section>
   );
 }
 
 // Memoized so keystrokes (which only re-render the parent's input) don't
-// re-run the 50k-row filter/pagination; it re-renders only when the deferred
+// re-run the 50k-row filter/pagination; it re-renders only when the debounced
 // search text changes.
 const ProductTable = memo(function ProductTable({
   search,
@@ -111,23 +111,9 @@ const ProductTable = memo(function ProductTable({
   const { pageIndex, pageSize } = table.state.pagination;
   const rows = table.getRowModel().rows;
 
-  const scrollRef = useRef<HTMLDivElement>(null);
-  const virtualizer = useVirtualizer({
-    count: rows.length,
-    getScrollElement: () => scrollRef.current,
-    estimateSize: () => ROW_HEIGHT,
-    overscan: 10,
-  });
-  const virtualRows = virtualizer.getVirtualItems();
-  const paddingTop = virtualRows.length > 0 ? virtualRows[0].start : 0;
-  const paddingBottom =
-    virtualRows.length > 0
-      ? virtualizer.getTotalSize() - virtualRows[virtualRows.length - 1].end
-      : 0;
-
   return (
     <>
-      <div className="table-scroll" ref={scrollRef}>
+      <div className="table-scroll">
         <table className="data-table">
           <thead>
             {table.getHeaderGroups().map((group) => (
@@ -144,26 +130,15 @@ const ProductTable = memo(function ProductTable({
           </thead>
           <tbody>
             {rows.length > 0 ? (
-              <>
-                {paddingTop > 0 && (
-                  <tr aria-hidden="true" style={{ height: paddingTop }} />
-                )}
-                {virtualRows.map((virtualRow) => {
-                  const row = rows[virtualRow.index];
-                  return (
-                    <tr key={row.id}>
-                      {row.getAllCells().map((cell) => (
-                        <td key={cell.id} className={`col-${cell.column.id}`}>
-                          <table.FlexRender cell={cell} />
-                        </td>
-                      ))}
-                    </tr>
-                  );
-                })}
-                {paddingBottom > 0 && (
-                  <tr aria-hidden="true" style={{ height: paddingBottom }} />
-                )}
-              </>
+              rows.map((row) => (
+                <tr key={row.id}>
+                  {row.getAllCells().map((cell) => (
+                    <td key={cell.id} className={`col-${cell.column.id}`}>
+                      <table.FlexRender cell={cell} />
+                    </td>
+                  ))}
+                </tr>
+              ))
             ) : (
               <tr>
                 <td colSpan={columns.length} className="empty">
